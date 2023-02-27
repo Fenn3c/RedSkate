@@ -1,0 +1,15 @@
+.products {
+    margin-bottom: 64px;
+}
+
+.products__title {
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 24px;
+}
+
+.products__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 32px;
+}

@@ -1,0 +1,20 @@
+@import "../../colors.css";
+
+.rating__count{
+    color: var(--main-text-blink);
+}
+.rating {
+    margin-bottom: 16px;
+}
+
+.rating__star {
+    content: url('../../../img/svg/rating-star.svg');
+}
+
+.rating__star__half {
+    content: url('../../../img/svg/rating-star-half.svg');
+}
+
+.rating__star__empty {
+    content: url('../../../img/svg/rating-star-empty.svg');
+}

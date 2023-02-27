@@ -1,0 +1,45 @@
+.header {
+    background-color: var(--main-bg);
+    font-weight: 700;
+}
+
+.header__wrap {
+    margin: auto;
+    max-width: 1440px;
+    padding: 32px 122px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__nav{
+    margin: auto;
+}
+.header__nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 10px;
+}
+
+.header__nav-item-link {
+    text-decoration: none;
+    color: var(--main-text);
+}
+
+.header__actions-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    column-gap: 32px;
+}
+
+.header__city-location {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.header__nav-item-link:hover {
+    color: var(--main-accent);
+    transition: color 100ms ease;
+}

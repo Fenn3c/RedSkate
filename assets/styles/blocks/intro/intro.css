@@ -1,0 +1,25 @@
+@import "../../colors.css";
+
+.intro {
+    background-color: var(--main-bg);
+    display: flex;
+    justify-content: center;
+    padding-top: 120px;
+    padding-bottom: 170px;
+}
+
+
+.intro__wrap {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.intro__img{
+    margin-bottom: 32px;
+}
+.intro__title{
+    font-weight: 700;
+    font-size: 36px;
+}
