@@ -1,6 +1,8 @@
 .header {
-    background-color: var(--main-bg);
     font-weight: 700;
+}
+.header_darker{
+    background-color: var(--main-bg);
 }
 
 .header__wrap {

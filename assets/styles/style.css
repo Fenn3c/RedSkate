@@ -7,6 +7,14 @@
 @import "./blocks/rating/rating.css";
 @import "./blocks/category-card/category-card.css";
 @import "./blocks/footer/footer.css";
+@import "./blocks/filter/filter.css";
+@import "./blocks/checkbox/checkbox.css";
+@import "./blocks/input/input.css";
+@import "./blocks/price-filter/price-filter.css";
+@import "./blocks/pagination/pagination.css";
+@import "./blocks/link/link.css";
+@import "./blocks/button/button.css";
+@import "./blocks/authentication/authentication.css";
 
 *,
 *::after,

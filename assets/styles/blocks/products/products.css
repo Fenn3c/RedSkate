@@ -1,4 +1,6 @@
 .products {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 64px;
 }
 
@@ -12,4 +14,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 32px;
+}
+
+.products__list_triple {
+    grid-template-columns: 1fr 1fr 1fr;
 }

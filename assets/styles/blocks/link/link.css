@@ -1,0 +1,14 @@
+.link {
+    color: var(--main-accent);
+    text-decoration: none;
+    transition: all 100ms ease;
+}
+
+.link:hover {
+    color: var(--main-accent-dark);
+    transition: all 100ms ease;
+}
+
+.link_underline {
+    text-decoration: underline;
+}

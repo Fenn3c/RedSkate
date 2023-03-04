@@ -1,0 +1,69 @@
+.price-filter {
+    width: 100%;
+}
+
+.price-filter__ranges {
+    position: relative;
+}
+
+.price-filter__range {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    top: 2px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    z-index: 1;
+}
+
+.price-filter__range::-webkit-slider-thumb {
+    cursor: grab;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--main-accent);
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.price-filter__range::-moz-range-thumb {
+    cursor: grab;
+    height: 16px;
+    width: 16px;
+    border: none;
+    border-radius: 50%;
+    background: var(--main-accent);
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+/* .price-filter__range-min {}
+
+.price-filter__range-max {} */
+
+.price-filter__inputs {
+    display: flex;
+    width: 100%;
+    margin-top: 24px;
+    column-gap: 64px;
+}
+
+.price-filter__slider {
+    height: 8px;
+    position: relative;
+    background: var(--main-bg);
+    border-radius: 8px;
+}
+
+.price-filter__slider .price-filter__progress {
+    height: 100%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    border-radius: 8px;
+    background: var(--main-accent);
+}

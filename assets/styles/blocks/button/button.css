@@ -1,0 +1,25 @@
+.button {
+    cursor: pointer;
+    font-family: 'PT Sans', sans-serif;
+    padding: 16px 32px;
+    background-color: var(--main-accent);
+    outline: none;
+    border: none;
+    border-radius: 16px;
+    color: var(--main-white);
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 100ms ease;
+}
+
+
+.button:hover {
+    background-color: var(--main-accent-dark);
+    transition: all 100ms ease;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    background-color: var(--main-bg);
+    color: var(--main-text-blink);
+}

@@ -1,0 +1,18 @@
+.filter {
+    display: flex;
+    flex-direction: column;
+    width: 275px;
+    margin-right: 32px;
+}
+
+.filter__section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    margin-bottom: 24px;
+}
+
+.filter__title {
+    font-weight: 700;
+    font-size: 20px;
+}
