@@ -24,6 +24,13 @@
     margin-bottom: 32px;
 }
 
+.reviews__send-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 4px;
+}
+
 .reviews__input {
     margin-right: 32px;
 }

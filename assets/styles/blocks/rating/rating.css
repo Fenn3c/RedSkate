@@ -1,11 +1,7 @@
-@import "../../colors.css";
+@import "./rating_input.css";
 
 .rating__count {
     color: var(--main-text-blink);
-}
-
-.rating {
-    /* margin-bottom: 16px; */
 }
 
 .rating__star {

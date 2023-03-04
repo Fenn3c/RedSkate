@@ -1,0 +1,22 @@
+.rating__input_input {
+    position: absolute;
+    left: -9999px;
+}
+
+.rating__label_input {
+    margin: 0;
+    cursor: pointer;
+    content: url('../../../img/svg/rating-star.svg');
+}
+
+.rating__input_input:checked~.rating__label_input {
+    content: url('../../../img/svg/rating-star-empty.svg');
+}
+
+.rating_input:hover .rating__label_input {
+    content: url('../../../img/svg/rating-star.svg');
+}
+
+.rating_input .rating__input_input:hover~.rating__label_input {
+    content: url('../../../img/svg/rating-star-empty.svg');
+}
