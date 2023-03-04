@@ -1,0 +1,35 @@
+.reviews__title-wrap {
+    display: flex;
+    align-items: end;
+    margin-bottom: 32px;
+}
+
+.reviews__title {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.reviews__count {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    color: var(--main-text-blink);
+}
+
+
+.reviews__send {
+    display: flex;
+    align-items: end;
+    margin-bottom: 32px;
+}
+
+.reviews__input {
+    margin-right: 32px;
+}
+
+.reviews__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}

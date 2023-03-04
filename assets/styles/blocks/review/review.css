@@ -1,0 +1,31 @@
+.review {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+}
+
+.review__left {
+    display: flex;
+    align-items: center;
+    column-gap: 24px;
+}
+
+.review__user-img {
+    width: 80px;
+    height: 80px;
+}
+
+.review__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.review__user-name {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.review__time {
+    color: var(--main-text-blink);
+}

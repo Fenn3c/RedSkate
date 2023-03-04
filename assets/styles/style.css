@@ -16,6 +16,8 @@
 @import "./blocks/button/button.css";
 @import "./blocks/authentication/authentication.css";
 @import "./blocks/product/product.css";
+@import "./blocks/reviews/reviews.css";
+@import "./blocks/review/review.css";
 
 *,
 *::after,

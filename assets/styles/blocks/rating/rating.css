@@ -1,10 +1,11 @@
 @import "../../colors.css";
 
-.rating__count{
+.rating__count {
     color: var(--main-text-blink);
 }
+
 .rating {
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
 }
 
 .rating__star {

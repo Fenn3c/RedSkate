@@ -132,7 +132,10 @@
                         <span class="rating__star__half"></span>
                         <span class="rating__count">1,2k</span>
                     </div>
-                    <p class="product__price">7 490 ₽</p>
+                    <div class="product__price-wrap">
+                        <p class="product__price">7 490 ₽</p>
+                        <p class="product__old-price">12 329 ₽</p>
+                    </div>
                     <p class="product__availability">В наличии</p>
                     <button class="product__buy-btn button">В корзину</button>
                     <p class="product__description-title">Информация о товаре</p>
@@ -324,7 +327,7 @@
                         <a href="#" class="product-card__link">
                             <p class="product-card__title">Скейтборд в сборе Footwork Waves 8”</p>
                         </a>
-                        <div class="product-card__rating rating">
+                        <div class="rating">
                             <span class="rating__star"></span>
                             <span class="rating__star"></span>
                             <span class="rating__star"></span>
@@ -367,6 +370,89 @@
                     </div>
             </section>
 
+            <section class="reviews">
+                <div class="reviews__title-wrap">
+                    <h2 class="reviews__title">Отзывы</h2>
+                    <span class="reviews__count">248</span>
+                </div>
+                <form class="reviews__send" action="" id="review-form">
+                    <div class="input reviews__input">
+                        <label class="input__label" for="review">Оставить отзыв<span class="input__label-required"
+                                required></span></label>
+                        <input type="text" class="input__input" name="review" id="review"
+                            placeholder="Напишите ваш отзыв о товаре" required>
+                    </div>
+                    <button class="button" type="submit" id="review-send" disabled>Отправить</button>
+                </form>
+                <div class="reviews__list">
+                    <div class="reviews__review review">
+                        <div class="review__left">
+                            <img src="./assets/img/png/user-default.png" alt="" class="review__user-img">
+                            <div class="review__content">
+                                <p class="review__user-name">Гость-2314</p>
+                                <div class="rating">
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star__half"></span>
+                                </div>
+                                <p class="review__text">
+                                    Товар понравился. Думал собрать по-частям, но так, как это мой первый скейт не стал
+                                    рисковать и взял в сборе. Упаковка хорошая, завернули в пупырку, за это отдельное
+                                    спасибо
+                                </p>
+                            </div>
+                        </div>
+                        <time class="review__time">02.03.2023</time>
+
+                    </div>
+                    <div class="reviews__review review">
+                        <div class="review__left">
+                            <img src="./assets/img/png/user-default.png" alt="" class="review__user-img">
+                            <div class="review__content">
+                                <p class="review__user-name">Гость-2314</p>
+                                <div class="rating">
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star__half"></span>
+                                </div>
+                                <p class="review__text">
+                                    Товар понравился. Думал собрать по-частям, но так, как это мой первый скейт не стал
+                                    рисковать и взял в сборе. Упаковка хорошая, завернули в пупырку, за это отдельное
+                                    спасибо
+                                </p>
+                            </div>
+                        </div>
+                        <time class="review__time">02.03.2023</time>
+
+                    </div>
+                    <div class="reviews__review review">
+                        <div class="review__left">
+                            <img src="./assets/img/png/user-default.png" alt="" class="review__user-img">
+                            <div class="review__content">
+                                <p class="review__user-name">Гость-2314</p>
+                                <div class="rating">
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star"></span>
+                                    <span class="rating__star__half"></span>
+                                </div>
+                                <p class="review__text">
+                                    Товар понравился. Думал собрать по-частям, но так, как это мой первый скейт не стал
+                                    рисковать и взял в сборе. Упаковка хорошая, завернули в пупырку, за это отдельное
+                                    спасибо
+                                </p>
+                            </div>
+                        </div>
+                        <time class="review__time">02.03.2023</time>
+
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
@@ -439,6 +525,11 @@
         left.addEventListener('click', () => {
             slider.scrollLeft -= scrollWidth;
         })
+    </script>
+    <script src="./assets/scripts/form-check.js">
+    </script>
+    <script>
+        formCheck(document.getElementById('review-form'), document.getElementById('review-send'));
     </script>
 </body>
 

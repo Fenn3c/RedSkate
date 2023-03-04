@@ -68,7 +68,8 @@
     background: transparent;
     border: none;
 }
-.product-card__action svg{
+
+.product-card__action svg {
     fill: var(--main-text);
 }
 
@@ -95,4 +96,8 @@
 
 .product-card__link {
     text-decoration: none;
+}
+
+.product-card__rating {
+    margin-bottom: 16px;
 }

@@ -45,6 +45,7 @@
 }
 
 .product__gallery-img_active {
+    transition: all 100ms ease;
     border: 2px var(--main-text) solid;
 }
 
@@ -64,10 +65,24 @@
     margin-bottom: 10px;
 }
 
+.product__price-wrap {
+    display: flex;
+    align-items: end;
+    margin-bottom: 12px;
+}
+
 .product__price {
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 12px;
+}
+
+.product__old-price {
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 16px;
+    margin-bottom: 4px;
+    color: var(--main-text-blink);
+    text-decoration: line-through;
 }
 
 .product__availability {
@@ -77,6 +92,7 @@
 
 .product__buy-btn {
     margin-bottom: 32px;
+    width: 50%;
 }
 
 .product__description-title {
