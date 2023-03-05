@@ -1,0 +1,21 @@
+.profile {
+    margin-bottom: 68px;
+}
+
+.profile__card {
+    display: flex;
+    align-items: center;
+}
+
+.profile__pfp {
+    width: 225px;
+    height: 225px;
+    margin-right: 68px;
+}
+
+.profile__card-inputs {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    width: 460px;
+}

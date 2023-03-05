@@ -18,6 +18,12 @@
 @import "./blocks/product/product.css";
 @import "./blocks/reviews/reviews.css";
 @import "./blocks/review/review.css";
+@import "./blocks/profile/profile.css";
+@import "./blocks/title/title.css";
+@import "./blocks/cart/cart.css";
+@import "./blocks/input-count/input-count.css";
+@import "./blocks/radio/radio.css";
+@import "./blocks/order/order.css";
 
 *,
 *::after,

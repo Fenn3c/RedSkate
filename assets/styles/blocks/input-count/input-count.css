@@ -1,0 +1,30 @@
+.input-count {
+    display: flex;
+    column-gap: 16px;
+    border-radius: 12px;
+    padding: 8px 24px;
+    border: 2px var(--main-text) solid;
+}
+
+.input-count__input {
+    background: transparent;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.input-count__input::-webkit-inner-spin-button,
+.input-count__input::-webkit-outer-spin-button {
+    display: none;
+}
+
+.input-count__btn {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    background: none;
+    outline: none;
+    border: none;
+}

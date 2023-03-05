@@ -1,4 +1,4 @@
-@import "../../colors.css";
+@import "./product-cart_cart.css";
 
 .product-card {
     width: 275px;
@@ -79,6 +79,10 @@
     transition: fill 100ms ease;
 }
 
+.product-card__action_active svg {
+    fill: var(--main-accent);
+}
+
 .product-card__action:first-child {
     margin-right: 4px;
 }
@@ -100,4 +104,22 @@
 
 .product-card__rating {
     margin-bottom: 16px;
+}
+
+.product-card__order-info {
+    display: flex;
+    column-gap: 16px;
+}
+
+.product-card__order-yellow {
+    color: var(--main-yellow);
+}
+
+
+.product-card__order-green {
+    color: var(--main-green)
+}
+
+.product-card__order-red {
+    color: var(--main-accent);
 }
