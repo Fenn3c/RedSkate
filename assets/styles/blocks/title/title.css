@@ -4,9 +4,15 @@
     margin-bottom: 68px;
 }
 
+
 .title_small {
     font-weight: 700;
     font-size: 24px;
     margin-bottom: 68px;
     margin-bottom: 24px;
 }
+
+    .title_no-margin {
+        margin-bottom: 0;
+    
+    }

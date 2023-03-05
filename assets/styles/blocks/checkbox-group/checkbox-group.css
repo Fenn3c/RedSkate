@@ -1,0 +1,10 @@
+.checkbox-group{
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    margin-bottom: 32px;
+}
+.checkbox-group__title{
+    font-size: 20px;
+    font-weight: 700;
+}

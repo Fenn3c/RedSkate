@@ -1,0 +1,19 @@
+.color-picker{
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.color-picker__lable{
+    font-size: 20px;
+    margin-left: 12px;
+    font-weight: 700;
+}
+
+.color-picker__input{
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+    background: transparent;
+    border: none;
+}

@@ -24,6 +24,9 @@
 @import "./blocks/input-count/input-count.css";
 @import "./blocks/radio/radio.css";
 @import "./blocks/order/order.css";
+@import "./blocks/checkbox-group/checkbox-group.css";
+@import "./blocks/color-picker/color-picker.css";
+@import "./blocks/create_product/create_product.css";
 
 *,
 *::after,
