@@ -1,4 +1,6 @@
+@import "./link_btn.css";
 .link {
+    cursor: pointer;
     color: var(--main-accent);
     text-decoration: none;
     transition: all 100ms ease;

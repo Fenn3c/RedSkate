@@ -62,6 +62,7 @@
     margin-left: auto;
     display: flex;
     align-items: center;
+    column-gap: 8px;
 }
 
 .product-card__action {
@@ -122,4 +123,8 @@
 
 .product-card__order-red {
     color: var(--main-accent);
+}
+
+.product-card__input-count {
+    margin-bottom: 16px;
 }
