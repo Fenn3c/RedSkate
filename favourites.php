@@ -59,7 +59,7 @@ $categories = $db->getCategories();
                                 <? for ($i = 0; $i < (int)$rating; $i++) : ?>
                                     <span class="rating__star"></span>
                                 <? endfor ?>
-                                <? if ($rating - (int)$rating == 0.5) : ?>
+                                <? if ($rating - (int)$rating) : ?>
                                     <span class="rating__star__half"></span>
                                 <? endif ?>
 

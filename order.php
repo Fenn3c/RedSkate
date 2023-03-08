@@ -1,3 +1,7 @@
+<?php
+require_once('./utils/sessionManager/sessionManager.php');
+$sessionManager = new SessionManager();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -13,8 +17,10 @@
     <?php include_once('./header.php'); ?>
     <main class="main main_main-page">
         <div class="main__wrap">
-            <form action="" class="order__form" id="order-form">
+            <form action="./actions/create_order.php" method="post" class="order__form" id="order-form">
                 <h2 class="title">Оформление заказа</h2>
+                <p class="error"><?= $sessionManager->getSessionField('CREATE_ORDER_ERROR') ?></p>
+                <? $sessionManager->clearSessionField('CREATE_ORDER_ERROR'); ?>
 
                 <h3 class="title_small">Данные покупателя</h3>
                 <div class="order__row-inputs">
@@ -34,32 +40,32 @@
 
                 <div class="order__row-inputs">
                     <label class="radio__label">
-                        <input type="radio" class="radio" name="delivery-method" id="pickup-radio" required checked>
+                        <input type="radio" class="radio" name="delivery-method" id="pickup-radio" value="1" required>
                         <span class="radio__label">Самовывоз</span>
                     </label>
 
                     <label class="radio__label">
-                        <input type="radio" class="radio" name="delivery-method" id="delivery-radio" required>
+                        <input type="radio" class="radio" name="delivery-method" id="delivery-radio" value="2" required>
                         <span class="radio__label">Доставка</span>
                     </label>
                 </div>
 
                 <div class="order__row-inputs">
-                    <div class="input input_hidden" id="address-block">
-                        <label class="input__label" for="address">Адрес доставки<span class="input__label-required">*</span></label>
-                        <input type="text" class="input__input" name="address" id="address" placeholder="Улица, дом, этаж, квартира" required>
+                    <div class="input input_hidden" id="delivery-address-block">
+                        <label class="input__label" for="delivery-address">Адрес доставки<span class="input__label-required">*</span></label>
+                        <input type="text" class="input__input" name="delivery-address" id="delivery-address" placeholder="Улица, дом, этаж, квартира" required>
                     </div>
                 </div>
 
                 <h3 class="title_small">Способ оплаты</h3>
                 <div class="order__row-inputs">
                     <label class="radio__label">
-                        <input type="radio" class="radio" name="pay-method" required checked>
+                        <input type="radio" class="radio" name="pay-method" value="1" required checked>
                         <span class="radio__label">При получении</span>
                     </label>
 
                     <label class="radio__label">
-                        <input type="radio" class="radio" name="pay-method" required>
+                        <input type="radio" class="radio" name="pay-method" value="2" required disabled>
                         <span class="radio__label">Онлайн</span>
                     </label>
                 </div>
@@ -79,8 +85,8 @@
     <script>
         const deliveryRadio = document.getElementById('delivery-radio')
         const pickupRadio = document.getElementById('pickup-radio')
-        const addressInput = document.getElementById('address')
-        const addressBlock = document.getElementById('address-block')
+        const addressInput = document.getElementById('delivery-address')
+        const addressBlock = document.getElementById('delivery-address-block')
 
         function check() {
             if (deliveryRadio.checked) {

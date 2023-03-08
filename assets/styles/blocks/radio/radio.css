@@ -33,6 +33,13 @@
     transition: all 200ms ease;
 }
 
+.radio:disabled+.radio__label::before {
+    border-color: var(--main-text-blink);
+}
+.radio:disabled+.radio__label {
+    color: var(--main-text-blink);
+}
+
 .radio:checked+.radio__label::before {
     border-color: var(--main-accent);
     transition: all 200ms ease;

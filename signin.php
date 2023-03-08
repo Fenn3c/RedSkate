@@ -1,3 +1,7 @@
+<?php
+require_once('./utils/sessionManager/sessionManager.php');
+$sessionManager = new SessionManager();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -16,7 +20,9 @@
         <div class="main__wrap">
             <div class="authentication">
                 <h1 class="authentication__title">Вход</h1>
-                <form class="authentication__form" action="" id="signup-form">
+                <p class="error"><?= $sessionManager->getSessionField('SIGNIN_ERROR'); ?></p>
+                <? $sessionManager->clearSessionField('SIGNIN_ERROR'); ?>
+                <form class="authentication__form" action="./actions/signin.php" method="post" id="signup-form">
                     <div class="input">
                         <label class="input__label" for="email">Почта<span class="input__label-required">*</span></label>
                         <input type="email" class="input__input" name="email" id="email" placeholder="Почта" required>
@@ -26,7 +32,7 @@
                         <input type="password" class="input__input" name="password" id="password" placeholder="Пароль" required>
                     </div>
                     <button class="button" type="submit" id="signup-btn" disabled>Войти</button>
-                    <a href="./signup.html" class="link">Нет аккаунта?</a>
+                    <a href="./signup.php" class="link">Нет аккаунта?</a>
                 </form>
             </div>
         </div>

@@ -91,8 +91,9 @@
 }
 
 .product__buy-btn {
-    margin-bottom: 32px;
-    width: 50%;
+    /* margin-bottom: 32px; */
+    /* width: 50%; */
+    width: 250px;
 }
 
 .product__description-title {
@@ -101,4 +102,11 @@
 
 .product__description {
     white-space: pre-line;
+}
+
+.product__buttons {
+    display: flex;
+    column-gap: 24px;
+    align-items: center;
+    margin-bottom: 24px;
 }

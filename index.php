@@ -9,8 +9,6 @@ $id_user = $sessionManager->idUser();
 $bestSellingProducts = $db->getBestSellingProducts();
 $newProducts = $db->getNewProducts();
 $categories = $db->getCategories();
-var_dump($bestSellingProducts, $_SESSION);
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -48,7 +46,7 @@ var_dump($bestSellingProducts, $_SESSION);
                                 <? if ($product['old_price']) : ?>
                                     <p class="product-card__discount"><?= get_discount($product['price'], $product['old_price']) ?></p>
                                 <? endif; ?>
-                                <a href="#" class="product-card__link">
+                                <a href="./product.php?id_product=<?=$product['id_product']?>" class="product-card__link">
                                     <img src="./data/product-preview/<?= $product['preview'] ?>" alt="" class="product-card__img">
                                 </a>
                             </div>
@@ -64,7 +62,7 @@ var_dump($bestSellingProducts, $_SESSION);
                                 <? for ($i = 0; $i < (int)$rating; $i++) : ?>
                                     <span class="rating__star"></span>
                                 <? endfor ?>
-                                <? if ($rating - (int)$rating == 0.5) : ?>
+                                <? if ($rating - (int)$rating) : ?>
                                     <span class="rating__star__half"></span>
                                 <? endif ?>
 
@@ -149,7 +147,7 @@ var_dump($bestSellingProducts, $_SESSION);
                                 <? if ($product['old_price']) : ?>
                                     <p class="product-card__discount"><?= get_discount($product['price'], $product['old_price']) ?></p>
                                 <? endif; ?>
-                                <a href="#" class="product-card__link">
+                                <a href="./product.php?id_product=<? $product['id_product'] ?>" class="product-card__link">
                                     <img src="./data/product-preview/<?= $product['preview'] ?>" alt="" class="product-card__img">
                                 </a>
                             </div>
@@ -165,7 +163,7 @@ var_dump($bestSellingProducts, $_SESSION);
                                 <? for ($i = 0; $i < (int)$rating; $i++) : ?>
                                     <span class="rating__star"></span>
                                 <? endfor ?>
-                                <? if ($rating - (int)$rating == 0.5) : ?>
+                                <? if ($rating - (int)$rating) : ?>
                                     <span class="rating__star__half"></span>
                                 <? endif ?>
 

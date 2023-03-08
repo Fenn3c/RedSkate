@@ -27,6 +27,7 @@
 @import "./blocks/checkbox-group/checkbox-group.css";
 @import "./blocks/color-picker/color-picker.css";
 @import "./blocks/create_product/create_product.css";
+@import "./blocks/error/error.css";
 
 *,
 *::after,

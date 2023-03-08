@@ -74,7 +74,7 @@ $categories = $db->getCategories();
                                                 <input type="hidden" name="id_cart" value="<?= $product['id_cart'] ?>">
                                                 <div class="product-card__input-count input-count">
                                                     <button type="submit" class="input-count__btn input-count__dec" name="dec">-</button>
-                                                    <input class="input-count__input" type="number" value="<?=$product['cart_count']?>" min="1" max="<?= $product['product_count'] ?>" disabled>
+                                                    <input class="input-count__input" type="number" value="<?= $product['cart_count'] ?>" min="1" max="<?= $product['product_count'] ?>" disabled>
                                                     <button type="submit" class="input-count__btn input-count__inc" name="inc">+</button>
                                                 </div>
                                             </form>
@@ -115,7 +115,9 @@ $categories = $db->getCategories();
                                 <p class="cart__order-count"><?= $cardCount ?> шт.</p>
                                 <p class="cart__order-price"><?= format_price($cardSum) ?></p>
                             </div>
-                            <button class="button">Перейти к оформлению</button>
+                            <form method="post" action="./actions/check_cart.php">
+                                <button class="button">Перейти к оформлению</button>
+                            </form>
                         </div>
                     </div>
                 </div>

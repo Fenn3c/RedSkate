@@ -33,6 +33,15 @@
     transition: all 200ms ease;
 }
 
+.checkbox:disabled+.checkbox__label::before {
+    border-color: var(--main-text-blink);
+}
+
+.checkbox:disabled+.checkbox__label {
+    color: var(--main-text-blink);
+}
+
+
 .checkbox:checked+.checkbox__label::before {
     border-color: var(--main-accent);
     background-color: var(--main-accent);

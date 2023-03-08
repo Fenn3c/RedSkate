@@ -1,3 +1,7 @@
+<?php
+require_once('./utils/sessionManager/sessionManager.php');
+$sessionManager = new SessionManager();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -16,7 +20,13 @@
         <div class="main__wrap">
             <div class="authentication">
                 <h1 class="authentication__title">Регистрация</h1>
-                <form class="authentication__form" action="" id="signup-form">
+                <p class="error"><?= $sessionManager->getSessionField('REGISTRATION_ERROR') ?></p>
+                <? $sessionManager->clearSessionField('REGISTRATION_ERROR'); ?>
+                <form class="authentication__form" method="post" action="./actions/signup.php" id="signup-form">
+                    <div class="input">
+                        <label class="input__label" for="name">Имя пользователя<span class="input__label-required">*</span></label>
+                        <input type="text" class="input__input" name="name" id="name" placeholder="Имя пользователя" required>
+                    </div>
                     <div class="input">
                         <label class="input__label" for="email">Почта<span class="input__label-required">*</span></label>
                         <input type="email" class="input__input" name="email" id="email" placeholder="Почта" required>
@@ -30,13 +40,13 @@
                         <input type="password" class="input__input" name="password_repeat" id="password_repeat" placeholder="Повтор пароля" required>
                     </div>
                     <label class="checkbox__label">
-                        <input type="checkbox" class="checkbox" id="tos" required>
+                        <input type="checkbox" class="checkbox" id="tos" name="tos" required>
                         <span class="checkbox__label">Я согласен с&nbsp;<a class="link link_underline" href="#">
                                 уловиями
                                 пользовательского соглашения</a></span>
                     </label>
                     <button class="button" type="submit" id="signup-btn" disabled>Зарегистрироваться</button>
-                    <a href="./sigin.html" class="link">Уже есть аккаунт?</a>
+                    <a href="./signin.php" class="link">Уже есть аккаунт?</a>
                 </form>
             </div>
         </div>
