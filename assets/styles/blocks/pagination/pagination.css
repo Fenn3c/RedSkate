@@ -24,7 +24,7 @@
 }
 
 
-.pagination__button__active {
+.pagination__button_active {
     background-color: var(--main-accent);
     color: var(--main-white);
 }

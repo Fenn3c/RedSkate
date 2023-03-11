@@ -1,3 +1,14 @@
+<?php
+require_once('./utils/database/database.php');
+require_once('./utils/sessionManager/sessionManager.php');
+require_once('./utils/middlewares/sessionMiddleware.php');
+$db = new Database();
+$sessionManager = new SessionManager();
+$sessionMiddleware = new SessionMiddleware($sessionManager, './index.php');
+$sessionMiddleware->onlyAdmin();
+
+$categories = $db->getCategories();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -14,21 +25,20 @@
     <main class="main main_main-page">
         <div class="main__wrap">
             <section class="create-product">
-                <form action="" class="create-product__form" id="create-product-form">
-
+                <form action="./actions/create_product.php" class="create-product__form" id="create-product-form" method="post" enctype="multipart/form-data">
                     <div>
                         <h2 class="title ">Создание товара</h2>
 
                         <h3 class="title_small title_no-margin">Данные товара</h3>
                     </div>
                     <div class="input">
-                        <label class="input__label" for="title">Название<span class="input__label-required">*</span></label>
-                        <input type="text" class="input__input" name="title" id="title" placeholder="Название товара" required>
+                        <label class="input__label" for="name">Название<span class="input__label-required">*</span></label>
+                        <input type="text" class="input__input" name="name" id="name" placeholder="Название товара" required>
                     </div>
                     <div class="create-product__inputs-row">
                         <div class="input">
                             <label class="input__label" for="price">Цена<span class="input__label-required">*</span></label>
-                            <input type="number" class="input__input" name="price" id="price" placeholder="Название товара" required>
+                            <input type="number" class="input__input" name="price" id="price" placeholder="Цена" required>
                         </div>
                         <div class="input">
                             <label class="input__label" for="old-price">Цена без скидки</label>
@@ -43,32 +53,30 @@
 
                     <label class="input__label" for="count">Количество экзмпляров<span class="input__label-required">*</span></label>
                     <div class="input-count">
-                        <button class="input-count__btn input-count__dec">-</button>
-                        <input id="count" name="count" class="input-count__input" type="number" value="1" min="1" max="4" required>
-                        <button class="input-count__btn input-count__inc">+</button>
+                        <button type="button" class="input-count__btn input-count__dec">-</button>
+                        <input id="count" name="count" class="input-count__input" type="number" value="1" min="1" max="100" required>
+                        <button type="button" class="input-count__btn input-count__inc">+</button>
                     </div>
 
                     <div class="checkbox-group">
                         <p class="checkbox-group__title">Пометить как</p>
                         <label class="checkbox__label">
-                            <input type="checkbox" class="checkbox">
+                            <input type="checkbox" class="checkbox" name="new">
                             <span class="checkbox__label">Новинка</span>
                         </label>
                         <label class="checkbox__label">
-                            <input type="checkbox" class="checkbox">
+                            <input type="checkbox" class="checkbox" name="bestseller">
                             <span class="checkbox__label">Хит продаж</span>
                         </label>
                     </div>
                     <div class="checkbox-group">
                         <p class="checkbox-group__title">Категория</p>
-                        <label class="checkbox__label">
-                            <input type="checkbox" class="checkbox">
-                            <span class="checkbox__label">Скейтборды в сборе</span>
-                        </label>
-                        <label class="checkbox__label">
-                            <input type="checkbox" class="checkbox">
-                            <span class="checkbox__label">Деки</span>
-                        </label>
+                        <? foreach ($categories as $category) : ?>
+                            <label class="checkbox__label">
+                                <input name="id_category" id="category-<?= $category['id_category'] ?>" value="<?= $category['id_category'] ?>" type="radio" class="checkbox">
+                                <span class="checkbox__label"><?= $category['name'] ?></span>
+                            </label>
+                        <? endforeach; ?>
                     </div>
 
                     <div class="color-picker">
@@ -79,12 +87,12 @@
                     <div class="create-product__inputs-row">
                         <div>
                             <h3 class="title_small">Превью изображение товара</h3>
-                            <input class="create-product__image-input button" type="file" required id="product-preview-input">
+                            <input class="create-product__image-input button" type="file" name="preview" required id="product-preview-input">
                         </div>
                         <img class="create-product__preview-img" src="./assets/img/png/product-img.png" alt="" id="product-preview">
                     </div>
                     <h3 class="title_small">Изображения товара</h3>
-                    <input class="create-product__image-input button" type="file" required id="product-gallery-input" multiple="multiple">
+                    <input class="create-product__image-input button" type="file" name="images[]" required id="product-gallery-input" multiple="multiple">
 
                     <div class="product__gallery">
                         <button class="product__gallery-btn" id="slider-left" type="button">
@@ -94,9 +102,6 @@
                         </button>
 
                         <div class="product__gallery-slider" id="slider">
-                            <!-- <img src="./assets/img/png/product/image 3.png" alt="" class="product__gallery-img">
-                            <img src="./assets/img/png/product/image 4.png" alt="" class="product__gallery-img">
-                            <img src="./assets/img/png/product/image 5.png" alt="" class="product__gallery-img"> -->
                         </div>
 
                         <button class="product__gallery-btn" id="slider-right" type="button">

@@ -17,6 +17,7 @@ function can_upload($file)
     return true;
 }
 
+
 function upload_image($file, $folder)
 {
     $getMime = explode('.', $file['name']);

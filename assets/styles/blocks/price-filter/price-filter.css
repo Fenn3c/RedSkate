@@ -47,9 +47,11 @@
 
 .price-filter__inputs {
     display: flex;
+    /* justify-content: space-between; */
+    text-align: center;
     width: 100%;
-    margin-top: 24px;
-    column-gap: 64px;
+    column-gap: 32px;
+    margin-bottom: 4px;
 }
 
 .price-filter__slider {
@@ -66,4 +68,8 @@
     position: absolute;
     border-radius: 8px;
     background: var(--main-accent);
+}
+
+.price-filter__text {
+    width: 100%;
 }

@@ -1,0 +1,23 @@
+.table {
+    border-collapse: collapse;
+}
+
+.table__item,
+.table__header {
+    border: 2px solid var(--main-text-blink);
+    text-align: center;
+}
+
+.table__header{
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.table__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 16px;
+    padding: 16px;
+}

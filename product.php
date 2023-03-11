@@ -36,7 +36,7 @@ $productImages = $db->getProductImages($_GET['id_product']);
     <main class="main main_main-page">
         <div class="main__wrap">
             <div class="product__breadcrumb">
-                <a class="link" href="./shop.html">Магазин</a> / <a class="link" href="./shop.php?id_category=<?= $category['id_category'] ?>">
+                <a class="link" href="./shop.php">Магазин</a> / <a class="link" href="./shop.php?id_category=<?= $category['id_category'] ?>">
                     <?= $category['name'] ?></a>
             </div>
             <section class="product">
@@ -83,9 +83,15 @@ $productImages = $db->getProductImages($_GET['id_product']);
 
                     <div class="product__price-wrap">
                         <p class="product__price"><?= format_price($product['price']) ?></p>
-                        <p class="product__old-price"><?= format_price($product['old_price']) ?></p>
+                        <? if ($product['old_price']) : ?>
+                            <p class="product__old-price"><?= format_price($product['old_price']) ?></p>
+                        <? endif; ?>
                     </div>
-                    <p class="product__availability">В наличии</p>
+                    <? if ($product['count'] > 0) : ?>
+                        <p class="product__availability">В наличии (<?= $product['count'] ?>шт.)</p>
+                    <? else : ?>
+                        <p class="product__availability">Нет в наличии</p>
+                    <? endif; ?>
                     <?php
                     $isInFavourite = false;
                     $isInCart = false;
@@ -97,10 +103,14 @@ $productImages = $db->getProductImages($_GET['id_product']);
                     <div class="product__buttons">
                         <form action="./actions/add_to_cart.php" method="post">
                             <input type="hidden" value="<?= $product['id_product'] ?>" name="id_product">
-                            <? if ($isInCart) : ?>
-                                <button class="product__buy-btn button">Убрать из корзины</button>
+                            <? if ($product['count'] > 0) : ?>
+                                <? if ($isInCart) : ?>
+                                    <button class="product__buy-btn button">Убрать из корзины</button>
+                                <? else : ?>
+                                    <button class="product__buy-btn button">В корзину</button>
+                                <? endif; ?>
                             <? else : ?>
-                                <button class="product__buy-btn button">В корзину</button>
+                                <button class="product__buy-btn button" disabled>Нет в наличии</button>
                             <? endif; ?>
                         </form>
                         <form action="./actions/add_to_favourites.php" method="post" class="">

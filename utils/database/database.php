@@ -16,7 +16,41 @@ class DataBase
 
     public function getProducts()
     {
-        $query = $this->db->prepare("SELECT * FROM products");
+        $query = $this->db->prepare("SELECT products.*, categories.name as category_name FROM products LEFT JOIN categories ON products.id_category = categories.id_category");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function getProductsWithFilters($sql, $values)
+    {
+        $query = $this->db->prepare("SELECT products.*, categories.name as category_name FROM products 
+        LEFT JOIN categories ON products.id_category = categories.id_category WHERE 1=1" . $sql);
+        $query->execute($values);
+        return $query->fetchAll();
+    }
+
+    public function getProductsCountWithFilters($sql, $values)
+    {
+        $query = $this->db->prepare("SELECT COUNT(*) as count FROM products 
+        LEFT JOIN categories ON products.id_category = categories.id_category WHERE 1=1" . $sql);
+        $query->execute($values);
+        return $query->fetch()['count'];
+    }
+    public function getMinMaxWithFilters($sql, $values)
+    {
+        $query = $this->db->prepare("SELECT min(products.price) as min, max(products.price) as max FROM products WHERE 1=1" . $sql);
+        $query->execute($values);
+        return $query->fetch();
+    }
+
+    public function getOrders()
+    {
+        $query = $this->db->prepare("SELECT orders.*,status,  order_delivery_method.method as delivery_method, order_pay_methods.method as pay_method FROM orders 
+
+INNER JOIN order_delivery_method ON orders.id_order_delivery_method = order_delivery_method.id_order_delivery_method
+INNER JOIN order_pay_methods ON orders.id_order_pay_method = order_pay_methods.id_order_pay_method
+INNER JOIN order_statuses ON orders.id_order_status = order_statuses.id_order_status
+ORDER BY id_order DESC");
         $query->execute();
         return $query->fetchAll();
     }
@@ -219,15 +253,15 @@ class DataBase
         return $query->fetch()['correct'];
     }
 
-    public function createOrder($id_user, $id_status, $id_order_delivery_method, $id_order_pay_method,  $phone, $email, $address)
+    public function createOrder($id_user, $id_order_status, $id_order_delivery_method, $id_order_pay_method,  $phone, $email, $address)
     {
         $query = $this->db->prepare("
-       INSERT INTO orders (id_user, id_status,id_order_delivery_method, id_order_pay_method, phone, email, address)
-        VALUES (:id_user, :id_status,:id_order_delivery_method, :id_order_pay_method, :phone, :email, :address);
+       INSERT INTO orders (id_user, id_order_status,id_order_delivery_method, id_order_pay_method, phone, email, address)
+        VALUES (:id_user, :id_order_status,:id_order_delivery_method, :id_order_pay_method, :phone, :email, :address);
         ");
         $query->execute(array(
             "id_user" => $id_user,
-            "id_status" => $id_status,
+            "id_order_status" => $id_order_status,
             "id_order_delivery_method" => $id_order_delivery_method,
             "id_order_pay_method" => $id_order_pay_method,
             "phone" => $phone,
@@ -251,9 +285,19 @@ class DataBase
     public function getUserOrderProducts($id_user)
     {
         $query = $this->db->prepare("SELECT * FROM order_products LEFT JOIN orders ON order_products.id_order = orders.id_order
-        LEFT JOIN products on order_products.id_product = products.id_product WHERE orders.id_user = $id_user");
+        LEFT JOIN products on order_products.id_product = products.id_product WHERE orders.id_user = :id_user");
         $query->execute(array(
             "id_user" => $id_user
+        ));
+        return $query->fetchAll();
+    }
+
+    public function getOrderProducts($id_order)
+    {
+        $query = $this->db->prepare("SELECT * FROM order_products LEFT JOIN orders ON order_products.id_order = orders.id_order
+        LEFT JOIN products on order_products.id_product = products.id_product WHERE orders.id_order = :id_order");
+        $query->execute(array(
+            "id_order" => $id_order
         ));
         return $query->fetchAll();
     }
@@ -261,7 +305,7 @@ class DataBase
     public function getSimilarProducts($id_product)
     {
         $query = $this->db->prepare("SELECT * FROM products 
-        WHERE id_category=(SELECT id_category FROM products WHERE products.id_product = :id_product) AND id_product != :id_product;");
+        WHERE id_category=(SELECT id_category FROM products WHERE products.id_product = :id_product) AND id_product != :id_product ORDER BY RAND() LIMIT 4");
         $query->execute(array(
             "id_product" => $id_product
         ));
@@ -288,7 +332,7 @@ class DataBase
     {
         $query = $this->db->prepare("SELECT COUNT(*) as count FROM order_products 
         LEFT JOIN orders ON orders.id_order = order_products.id_order LEFT JOIN users ON users.id_user = orders.id_user
-WHERE orders.id_status = 5 AND orders.id_user = :id_user AND order_products.id_product = :id_product;");
+WHERE orders.id_order_status = 5 AND orders.id_user = :id_user AND order_products.id_product = :id_product;");
         $query->execute(array(
             "id_user" => $id_user,
             "id_product" => $id_product
@@ -383,6 +427,91 @@ WHERE orders.id_status = 5 AND orders.id_user = :id_user AND order_products.id_p
         $query->execute(array(
             "id_user" => $id_user,
             "pfp" => $pfp
+        ));
+    }
+
+    public function getStatuses()
+    {
+        $query = $this->db->prepare("SELECT * FROM order_statuses");
+        $query->execute();
+        return $query->fetchAll();
+    }
+    public function updateOrderStatus($id_order, $id_order_status)
+    {
+        $query = $this->db->prepare("UPDATE orders SET id_order_status=:id_order_status WHERE id_order=:id_order");
+        $query->execute(array(
+            "id_order" => $id_order,
+            "id_order_status" => $id_order_status
+        ));
+    }
+    public function createProduct(
+        $name,
+        $price,
+        $old_price,
+        $description,
+        $preview,
+        $color,
+        $id_category,
+        $count,
+        $new,
+        $bestSeller
+    ) {
+        $query = $this->db->prepare("INSERT INTO products (
+            name,
+            price,
+            old_price,
+            description,
+            preview,
+            color,
+            id_category,
+            count,
+            new,
+            bestseller
+        )
+       VALUES (
+            :name,
+            :price,
+            :old_price,
+            :description,
+            :preview,
+            :color,
+            :id_category,
+            :count,
+            :new,
+            :bestseller
+       ) 
+        
+        ");
+        $query->execute(array(
+            "name" => $name,
+            "price" => $price,
+            "old_price" => $old_price,
+            "description" => $description,
+            "preview" => $preview,
+            "color" => $color,
+            "id_category" => $id_category,
+            "count" => $count,
+            "new" => $new,
+            "bestseller" => $bestSeller
+        ));
+        return $this->db->lastInsertId();
+    }
+
+    public function createProductImage($id_product, $image)
+    {
+        $query = $this->db->prepare("INSERT INTO product_images(id_product, image) VALUES(:id_product, :image)");
+        $query->execute(array(
+            "id_product" => $id_product,
+            "image" => $image
+        ));
+        return $this->db->lastInsertId();
+    }
+
+    public function deleteProduct($id_product)
+    {
+        $query = $this->db->prepare("DELETE FROM products WHERE id_product = $id_product");
+        $query->execute(array(
+            "id_product" => $id_product
         ));
     }
 }

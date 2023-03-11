@@ -105,7 +105,7 @@ var_dump($_SESSION);
                             </a>
                             <div class="product-card__order-info">
                                 <?php
-                                switch ($product['id_status']):
+                                switch ($product['id_order_status']):
                                     case 1:
                                 ?>
                                         <span class="product-card__order-yellow">
