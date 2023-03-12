@@ -36,7 +36,7 @@ $productImages = $db->getProductImages($_GET['id_product']);
     <main class="main main_main-page">
         <div class="main__wrap">
             <div class="product__breadcrumb">
-                <a class="link" href="./shop.php">Магазин</a> / <a class="link" href="./shop.php?id_category=<?= $category['id_category'] ?>">
+                <a class="link" href="./shop.php">Магазин</a> / <a class="link" href="./shop.php?id_category%5B1%5D=<?= $category['id_category'] ?>">
                     <?= $category['name'] ?></a>
             </div>
             <section class="product">

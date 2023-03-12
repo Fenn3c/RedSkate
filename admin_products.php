@@ -80,7 +80,7 @@ $products = $db->getProducts();
                             </td>
                             <td class="table__item">
                                 <div class="table__links">
-                                    <a class="button">
+                                    <a class="button" href="./edit_product.php?id_product=<?= $product['id_product'] ?>">
                                         Изменить
                                     </a>
                                     <a class="button" href="./actions/delete_product.php?id_product=<?= $product['id_product'] ?>">

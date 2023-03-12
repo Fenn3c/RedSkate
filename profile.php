@@ -3,8 +3,11 @@ require_once('./utils/database/database.php');
 require_once('./utils/formaters/format_price.php');
 require_once('./utils/formaters/get_discount.php');
 require_once('./utils/sessionManager/sessionManager.php');
+require_once('./utils/middlewares/sessionMiddleware.php');
+
 $db = new Database();
 $sessionManager = new SessionManager();
+$sessionMiddleware = new SessionMiddleware($sessionManager, './index.php');
 $id_user = $sessionManager->idUser();
 $orderProducts = [];
 $user = [];
@@ -152,6 +155,13 @@ var_dump($_SESSION);
                     <? endforeach; ?>
                 </div>
             </section>
+            <?
+            if ($sessionMiddleware->isAdmin()) :
+            ?>
+           
+                <a href="./admin.php" class="button button_link">Панель администратора</a>
+            <? endif; ?>
+            <br>
             <form action="./actions/exit.php">
                 <?
                 if ($sessionManager->idUser()) :

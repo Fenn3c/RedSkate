@@ -2,12 +2,25 @@
 require_once('./utils/database/database.php');
 require_once('./utils/sessionManager/sessionManager.php');
 require_once('./utils/middlewares/sessionMiddleware.php');
+require_once('./utils/formaters/format_price.php');
+require_once('./utils/formaters/get_discount.php');
 $db = new Database();
 $sessionManager = new SessionManager();
 $sessionMiddleware = new SessionMiddleware($sessionManager, './index.php');
 $sessionMiddleware->onlyAdmin();
 
 $categories = $db->getCategories();
+if (!isset($_GET['id_product'])) {
+    if (isset($_SERVER["HTTP_REFERER"])) {
+        header("Location: " . $_SERVER["HTTP_REFERER"]);
+    } else {
+        header("Location: ./index.php");
+    }
+}
+
+$id_product = (int)$_GET['id_product'];
+$product = $db->getProductById($id_product);
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -16,7 +29,7 @@ $categories = $db->getCategories();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание товара - RedSkate</title>
+    <title>Редактирование товара - RedSkate</title>
     <link rel="stylesheet" href="./assets/styles/style.css">
 </head>
 
@@ -25,7 +38,8 @@ $categories = $db->getCategories();
     <main class="main main_main-page">
         <div class="main__wrap">
             <section class="create-product">
-                <form action="./actions/create_product.php" class="create-product__form" id="create-product-form" method="post" enctype="multipart/form-data">
+                <form action="./actions/edit_product.php" class="create-product__form" id="create-product-form" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id_product" value="<?= $id_product ?>">
                     <div>
                         <h2 class="title ">Создание товара</h2>
 
@@ -33,39 +47,39 @@ $categories = $db->getCategories();
                     </div>
                     <div class="input">
                         <label class="input__label" for="name">Название<span class="input__label-required">*</span></label>
-                        <input type="text" class="input__input" name="name" id="name" placeholder="Название товара" required>
+                        <input type="text" class="input__input" name="name" id="name" placeholder="Название товара" value="<?= $product['name'] ?>" required>
                     </div>
                     <div class="create-product__inputs-row">
                         <div class="input">
                             <label class="input__label" for="price">Цена<span class="input__label-required">*</span></label>
-                            <input type="number" class="input__input" name="price" id="price" placeholder="Цена" required>
+                            <input type="number" class="input__input" name="price" id="price" value="<?= $product['price'] ?>" placeholder="Цена" required>
                         </div>
                         <div class="input">
                             <label class="input__label" for="old-price">Цена без скидки</label>
-                            <input type="text" class="input__input" name="old-price" id="old-price" placeholder="Цена без скидки">
+                            <input type="text" class="input__input" name="old-price" id="old-price" value="<?= $product['old_price'] ?>" placeholder="Цена без скидки">
                         </div>
                     </div>
                     <div class="input">
                         <label class="input__label" for="description">Описание товара<span class="input__label-required">*</span></label>
-                        <textarea class="input__input" name="description" id="description" cols="30" rows="10" placeholder="Описание товара" required></textarea>
+                        <textarea class="input__input" name="description" id="description" cols="30" rows="10" placeholder="Описание товара" required><?= $product['description'] ?></textarea>
                     </div>
 
 
                     <label class="input__label" for="count">Количество экзмпляров<span class="input__label-required">*</span></label>
                     <div class="input-count">
                         <button type="button" class="input-count__btn input-count__dec">-</button>
-                        <input id="count" name="count" class="input-count__input" type="number" value="1" min="1" max="100" required>
+                        <input id="count" name="count" class="input-count__input" type="number" min="1" max="100" value="<?= $product['count'] ?>" required>
                         <button type="button" class="input-count__btn input-count__inc">+</button>
                     </div>
 
                     <div class="checkbox-group">
                         <p class="checkbox-group__title">Пометить как</p>
                         <label class="checkbox__label">
-                            <input type="checkbox" class="checkbox" name="new">
+                            <input type="checkbox" class="checkbox" name="new" <?= $product['new'] ? 'checked' : '' ?>>
                             <span class="checkbox__label">Новинка</span>
                         </label>
                         <label class="checkbox__label">
-                            <input type="checkbox" class="checkbox" name="bestseller">
+                            <input type="checkbox" class="checkbox" name="bestseller" <?= $product['bestseller'] ? 'checked' : '' ?>>
                             <span class="checkbox__label">Хит продаж</span>
                         </label>
                     </div>
@@ -73,26 +87,26 @@ $categories = $db->getCategories();
                         <p class="checkbox-group__title">Категория</p>
                         <? foreach ($categories as $category) : ?>
                             <label class="checkbox__label">
-                                <input name="id_category" id="category-<?= $category['id_category'] ?>" value="<?= $category['id_category'] ?>" type="radio" class="checkbox">
+                                <input name="id_category" id="category-<?= $category['id_category'] ?>" value="<?= $category['id_category'] ?>" type="radio" class="checkbox" <?= $category['id_category'] == $product['id_category'] ? 'checked' : '' ?>>
                                 <span class="checkbox__label"><?= $category['name'] ?></span>
                             </label>
                         <? endforeach; ?>
                     </div>
 
                     <div class="color-picker">
-                        <input class="color-picker__input" type="color" id="color" name="color" required>
+                        <input class="color-picker__input" type="color" id="color" name="color" value="<?= $product['color'] ?>" required>
                         <label class="color-picker__lable" for="color">Цвет фона</label>
                     </div>
 
                     <div class="create-product__inputs-row">
                         <div>
-                            <h3 class="title_small">Превью изображение товара</h3>
-                            <input class="create-product__image-input button" type="file" name="preview" required id="product-preview-input">
+                            <h3 class="title_small">Изменить превью изображение</h3>
+                            <input class="create-product__image-input button" type="file" name="preview" id="product-preview-input">
                         </div>
                         <img class="create-product__preview-img" src="./assets/img/png/product-img.png" alt="" id="product-preview">
                     </div>
-                    <h3 class="title_small">Изображения товара</h3>
-                    <input class="create-product__image-input button" type="file" name="images[]" required id="product-gallery-input" multiple="multiple">
+                    <h3 class="title_small">Изменить изображения товара</h3>
+                    <input class="create-product__image-input button" type="file" name="images[]" id="product-gallery-input" multiple="multiple">
 
                     <div class="product__gallery">
                         <button class="product__gallery-btn" id="slider-left" type="button">
@@ -110,20 +124,20 @@ $categories = $db->getCategories();
                             </svg>
                         </button>
                     </div>
-                    <button type="submit" id="create-product-btn" class="button" disabled>Создать</button>
+                    <button type="submit" id="create-product-btn" class="button" disabled>Изменить</button>
                 </form>
                 <div class="create-product__preview">
                     <h3 class="title-small">Предпросмотр товара</h3>
                     <div class="products__list-item product-card">
-                        <div class="product-card__bg" id="color-preview">
-                            <p class="product-card__discount" id="old-price-preview" hidden>-30%</p>
+                        <div class="product-card__bg" id="color-preview" style="background-color: <?= $product['color'] ?>">
+                            <p class="product-card__discount" id="old-price-preview" <?= $product['old_price'] ? '' : 'hidden' ?>><?= get_discount($product['price'], $product['old_price']) ?></p>
                             <a href="#" class="product-card__link">
-                                <img src="./assets/img/png/product-img.png" alt="" class="product-card__img" id="preview-img">
+                                <img src="./data/product-preview/<?= $product['preview'] ?>" alt="" class="product-card__img" id="preview-img">
                             </a>
                         </div>
 
                         <a href="#" class="product-card__link">
-                            <p class="product-card__title" id="preview-name">Скейтборд в сборе Footwork Waves 8”</p>
+                            <p class="product-card__title" id="preview-name"><?= $product['name'] ?></p>
                         </a>
                         <div class="product-card__rating rating">
                             <span class="rating__star"></span>
@@ -134,8 +148,8 @@ $categories = $db->getCategories();
                             <span class="rating__count">1,2k</span>
                         </div>
                         <div class="product-card__bottom">
-                            <span class="product-card__price" id="preview-price">5 243 ₽</span>
-                            <span class="product-card__price_crossed" id="preview-old-price" hidden>7 490 ₽</span>
+                            <span class="product-card__price" id="preview-price"><?= format_price($product['price']) ?></span>
+                            <span class="product-card__price_crossed" id="preview-old-price" <?= $product['old_price'] ? '' : 'hidden' ?>><?= format_price($product['old_price']) ?></span>
                             <div class="product-card__actions">
                                 <form action="">
                                     <button class="product-card__action">

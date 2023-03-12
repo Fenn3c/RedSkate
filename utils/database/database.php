@@ -514,4 +514,93 @@ WHERE orders.id_order_status = 5 AND orders.id_user = :id_user AND order_product
             "id_product" => $id_product
         ));
     }
+
+    public function searchProduct($search)
+    {
+        $query = $this->db->prepare("SELECT * FROM products WHERE products.name LIKE :search OR products.description LIKE :search");
+        $query->execute(array(
+            "search" => "%$search%"
+        ));
+        return $query->fetchAll();
+    }
+
+
+    public function editProduct(
+        $id_product,
+        $name,
+        $price,
+        $old_price,
+        $description,
+        $color,
+        $id_category,
+        $count,
+        $new,
+        $bestSeller
+    ) {
+        $query = $this->db->prepare("UPDATE products SET
+        name = :name,
+        price = :price,
+        old_price = :old_price,
+        description = :description,
+        color = :color,
+        id_category = :id_category,
+        count = :count,
+        new = :new,
+        bestseller = :bestseller
+        WHERE id_product = :id_product
+        ");
+
+        $query->execute(array(
+            "id_product" => $id_product,
+            "name" => $name,
+            "price" => $price,
+            "old_price" => $old_price,
+            "description" => $description,
+            "color" => $color,
+            "id_category" => $id_category,
+            "count" => $count,
+            "new" => $new,
+            "bestseller" => $bestSeller
+        ));
+    }
+    public function editProductPreview(
+        $id_product,
+        $preview
+    ) {
+        $query = $this->db->prepare("UPDATE products SET
+        preview = :preview
+        WHERE id_product = :id_product
+        ");
+
+        $query->execute(array(
+            "id_product" => $id_product,
+            "preview" => $preview
+        ));
+    }
+
+
+    public function editProductImage(
+        $id_product_image,
+        $image
+
+    ) {
+        $query = $this->db->prepare("UPDATE products SET
+        id_product_image = :id_product_image,
+        image=:image
+        WHERE id_product = :id_product
+        ");
+
+        $query->execute(array(
+            "id_product_image" => $id_product_image,
+            "image" => $image
+        ));
+    }
+
+    public function deleteProductImage($id_product_image)
+    {
+        $query = $this->db->prepare("DELETE FROM product_images WHERE id_product_image = :id_product_image");
+        $query->execute(array(
+            "id_product_image" => $id_product_image
+        ));
+    }
 }

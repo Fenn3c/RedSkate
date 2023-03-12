@@ -30,6 +30,11 @@
     color: var(--main-text);
 }
 
+.header__actions {
+    display: flex;
+    align-items: center
+}
+
 .header__actions-list {
     display: flex;
     align-items: center;
@@ -46,4 +51,29 @@
 .header__nav-item-link:hover {
     color: var(--main-accent);
     transition: color 100ms ease;
+}
+
+.header__search {
+    display: flex;
+    align-items: center;
+}
+
+.header__search-input {
+    margin-right: 16px;
+}
+
+.header__search-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.header__actions-item svg {
+    fill: var(--main-text);
+}
+
+.header__actions-item:hover svg {
+    fill: var(--main-accent);
+    transition: fill 100ms ease;
 }
