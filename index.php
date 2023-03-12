@@ -125,7 +125,7 @@ $categories = $db->getCategories();
                 <div class="products__list">
                     <? foreach ($categories as $category) : ?>
                         <div class="category-card">
-                            <a href="#">
+                            <a href="./shop.php?id_category%5B1%5D=<?=$category['id_category']?>">
                                 <img src="./data/category-preview/<?= $category['preview'] ?>" alt="" class="category-card__img">
                                 <span class="category-card__title"><?= $category['name'] ?></span>
                             </a>
