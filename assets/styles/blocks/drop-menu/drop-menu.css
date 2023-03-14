@@ -1,0 +1,40 @@
+.drop-menu {
+    position: relative;
+}
+
+
+.drop-menu__list {
+    top: 24px;
+    left: 50%;
+    width: 220px;
+    transform: translateX(-50%);
+    position: absolute;
+    z-index: 2;
+    background-color: var(--main-white);
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    list-style: none;
+    transition: all 200ms ease;
+}
+
+.drop-menu__list_hidden {
+    /* display: none; */
+    pointer-events: none;
+    opacity: 0;
+    transition: all 200ms ease;
+}
+
+.drop-menu__item {
+    padding: 12px 24px;
+    border-radius: 12px;
+}
+
+.drop-menu__item:hover {
+    background-color: var(--main-accent);
+    color: var(--main-white);
+}
+
+.drop-menu__item:hover>.link {
+
+    color: var(--main-white);
+}

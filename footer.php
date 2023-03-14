@@ -14,28 +14,28 @@
         <div class="footer__bottom">
             <nav class="footer__nav">
                 <ul class="footer__nav-list">
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Главная</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Магазин</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Избранное</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Аккаунт</a></li>
+                    <li class="footer__nav-item"><a href="./index.php" class="footer__nav-link">Главная</a></li>
+                    <li class="footer__nav-item"><a href="./index.php" class="footer__nav-link">Магазин</a></li>
+                    <li class="footer__nav-item"><a href="./favourites.php" class="footer__nav-link">Избранное</a></li>
+                    <li class="footer__nav-item"><a href="./profile.php" class="footer__nav-link">Аккаунт</a></li>
                 </ul>
                 <ul class="footer__nav-list">
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Скейтборды в сборе</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Деки</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Шкурка</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Подвески</a></li>
+                    <li class="footer__nav-item"><a href="./shop.php?id_category%5b1%5d=1" class="footer__nav-link">Скейтборды в сборе</a></li>
+                    <li class="footer__nav-item"><a href="./shop.php?id_category%5b1%5d=2" class="footer__nav-link">Деки</a></li>
+                    <li class="footer__nav-item"><a href="./shop.php?id_category%5b1%5d=3" class="footer__nav-link">Подвески</a></li>
+                    <li class="footer__nav-item"><a href="./shop.php?id_category%5b1%5d=4" class="footer__nav-link">Колеса</a></li>
                 </ul>
-                <ul class="footer__nav-list">
+                <!-- <ul class="footer__nav-list">
                     <li class="footer__nav-item"><a href="#" class="footer__nav-link">Колеса</a></li>
                     <li class="footer__nav-item"><a href="#" class="footer__nav-link">Чехлы и рюкзаки</a></li>
                     <li class="footer__nav-item"><a href="#" class="footer__nav-link">Инструменты</a></li>
                     <li class="footer__nav-item"><a href="#" class="footer__nav-link">Подшипники</a></li>
-                </ul>
+                </ul> -->
                 <ul class="footer__nav-list">
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Юнион</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Footwork</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Element</a></li>
-                    <li class="footer__nav-item"><a href="#" class="footer__nav-link">Pizza Skateboards</a></li>
+                    <li class="footer__nav-item"><a href="./shop.php?search=Юнион" class="footer__nav-link">Юнион</a></li>
+                    <li class="footer__nav-item"><a href="./shop.php?search=Footwork" class="footer__nav-link">Footwork</a></li>
+                    <li class="footer__nav-item"><a href="./shop.php?search=Element" class="footer__nav-link">Element</a></li>
+                    <li class="footer__nav-item"><a href="./shop.php?search=Pizza Skateboards" class="footer__nav-link">Pizza Skateboards</a></li>
                 </ul>
             </nav>
             <div class="footer__partners">

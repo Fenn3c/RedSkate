@@ -1,4 +1,5 @@
 .products {
+    min-width: 880px;
     display: flex;
     flex-direction: column;
     margin-bottom: 64px;
@@ -18,4 +19,15 @@
 
 .products__list_triple {
     grid-template-columns: 1fr 1fr 1fr;
+}
+
+.products__title_no-margin {
+    margin-bottom: 0;
+}
+
+.products__title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
 }

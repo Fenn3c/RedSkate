@@ -12,7 +12,7 @@
         <nav class="header__nav">
             <ul class="header__nav-list">
                 <li class="header__nav-item"><a href="./index.php" class="header__nav-item-link">Главная</a></li>
-                <li class="header__nav-item"><a href="./shop.php?id_category%5B1%5D=1" class="header__nav-item-link">Скейтборды</a></li>
+                <li class="header__nav-item"><a href="./shop.php?id_category%5b1%5d=1" class="header__nav-item-link">Скейтборды</a></li>
                 <li class="header__nav-item"><a href="./shop.php?id_category%5B1%5D=2" class="header__nav-item-link">Деки</a></li>
                 <li class="header__nav-item"><a href="./shop.php?id_category%5B1%5D=4" class="header__nav-item-link">Подвески</a></li>
                 <li class="header__nav-item"><a href="./shop.php?id_category%5B1%5D=5" class="header__nav-item-link">Колеса</a></li>

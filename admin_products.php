@@ -54,9 +54,11 @@ $products = $db->getProducts();
                         <th class="table__header">
                             Цена
                         </th>
-
                         <th class="table__header">
                             Цена без акции
+                        </th>
+                        <th class="table__header">
+                            Количество
                         </th>
                         <th class="table__header">Действия</th>
                     </tr>
@@ -77,6 +79,9 @@ $products = $db->getProducts();
                             </td>
                             <td class="table__item">
                                 <?= $product['old_price'] ? format_price($product['old_price']) : 'Не указ.' ?>
+                            </td>
+                            <td class="table__item">
+                                <?= $product['count'] ?>
                             </td>
                             <td class="table__item">
                                 <div class="table__links">

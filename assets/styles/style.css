@@ -29,6 +29,7 @@
 @import "./blocks/create_product/create_product.css";
 @import "./blocks/error/error.css";
 @import "./blocks/table/table.css";
+@import "./blocks/drop-menu/drop-menu.css";
 
 *,
 *::after,
