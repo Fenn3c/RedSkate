@@ -30,8 +30,6 @@ function updatePfp()
         return;
     }
 
-    // $db->updateUserInfo($sessionManager->idUser(), $name, $email, $phone, $address);
-
 
     return true;
 }

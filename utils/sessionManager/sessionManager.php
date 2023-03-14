@@ -17,8 +17,6 @@ class SessionManager
         $_SESSION['id_user'] = $id_user;
     }
 
-
-
     public function createTempUser()
     {
         $db = new Database();
