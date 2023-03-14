@@ -42,7 +42,6 @@ $categories = $db->getCategories();
                     <? foreach ($bestSellingProducts as $product) : ?>
                         <div class="products__list-item product-card">
                             <div class="product-card__bg" style="background-color: <?= $product['color'] ?>">
-
                                 <? if ($product['old_price']) : ?>
                                     <p class="product-card__discount"><?= get_discount($product['price'], $product['old_price']) ?></p>
                                 <? endif; ?>
@@ -50,11 +49,9 @@ $categories = $db->getCategories();
                                     <img src="./data/product-preview/<?= $product['preview'] ?>" alt="" class="product-card__img">
                                 </a>
                             </div>
-
-                            <a href="#" class="product-card__link">
+                            <a href="./product.php?id_product=<?= $product['id_product'] ?>" class="product-card__link">
                                 <p class="product-card__title"><?= $product['name'] ?></p>
                             </a>
-
                             <?
                             $rating = $db->getProductRating($product['id_product']);
                             ?>
@@ -125,7 +122,7 @@ $categories = $db->getCategories();
                 <div class="products__list">
                     <? foreach ($categories as $category) : ?>
                         <div class="category-card">
-                            <a href="./shop.php?id_category%5B1%5D=<?=$category['id_category']?>">
+                            <a href="./shop.php?id_category%5B1%5D=<?= $category['id_category'] ?>">
                                 <img src="./data/category-preview/<?= $category['preview'] ?>" alt="" class="category-card__img">
                                 <span class="category-card__title"><?= $category['name'] ?></span>
                             </a>
