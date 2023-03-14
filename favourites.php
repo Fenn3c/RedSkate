@@ -43,7 +43,7 @@ $categories = $db->getCategories();
                                 <? if ($product['old_price']) : ?>
                                     <p class="product-card__discount"><?= get_discount($product['price'], $product['old_price']) ?></p>
                                 <? endif; ?>
-                                <a href="#" class="product-card__link">
+                                <a href="./product.php?id_product=<?= $product['id_product'] ?>" class="product-card__link">
                                     <img src="./data/product-preview/<?= $product['preview'] ?>" alt="" class="product-card__img">
                                 </a>
                             </div>

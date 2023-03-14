@@ -15,8 +15,6 @@ if ($id_user) {
     $orderProducts = $db->getUserOrderProducts($id_user);
     $user = $db->getUserData($id_user);
 }
-var_dump($orderProducts);
-var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="ru">

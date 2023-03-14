@@ -10,7 +10,6 @@ $cartProducts = [];
 if ($id_user) {
     $cartProducts = $db->getCartProducts($id_user);
 }
-var_dump($cartProducts);
 $newProducts = $db->getNewProducts();
 $categories = $db->getCategories();
 ?>
