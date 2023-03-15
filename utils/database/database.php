@@ -603,4 +603,14 @@ WHERE orders.id_order_status = 5 AND orders.id_user = :id_user AND order_product
             "id_product_image" => $id_product_image
         ));
     }
+    public function decOrderProductsCountFromCart($id_user)
+    {
+        $query = $this->db->prepare("
+        UPDATE products SET products.count = products.count - (SELECT count from cart WHERE cart.id_product=products.id_product)
+         WHERE products.id_product IN (SELECT cart.id_product from cart WHERE cart.id_user=:id_user)
+        ");
+        $query->execute(array(
+            "id_user" => $id_user,
+        ));
+    }
 }

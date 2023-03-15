@@ -46,6 +46,7 @@ function createOrder()
         $email,
         $deliveryAddress
     );
+    $db->decOrderProductsCountFromCart($sessionManager->idUser());
     $db->addOrderProductsFromCart($id_order, $sessionManager->idUser());
     $db->clearCart($sessionManager->idUser());
     return true;
