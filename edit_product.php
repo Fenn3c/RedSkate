@@ -41,7 +41,7 @@ $product = $db->getProductById($id_product);
                 <form action="./actions/edit_product.php" class="create-product__form" id="create-product-form" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id_product" value="<?= $id_product ?>">
                     <div>
-                        <h2 class="title ">Создание товара</h2>
+                        <h2 class="title">Изменение товара</h2>
 
                         <h3 class="title_small title_no-margin">Данные товара</h3>
                     </div>
