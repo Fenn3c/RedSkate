@@ -27,7 +27,7 @@ $sessionManager = new SessionManager();
 
                     <div class="input">
                         <label class="input__label" for="phone">Телефон<span class="input__label-required">*</span></label>
-                        <input type="tel" class="input__input" name="phone" id="phone" placeholder="Телефон" required>
+                        <input type="tel" class="input__input phone" name="phone" id="phone" placeholder="Телефон" required>
                     </div>
                     <div class="input">
                         <label class="input__label" for="email">Почта<span class="input__label-required">*</span></label>
@@ -106,6 +106,8 @@ $sessionManager = new SessionManager();
             check()
         })
     </script>
+    <script src="./assets/scripts/vendor/imask.js"></script>
+    <script src="./assets/scripts/tel-mask.js"></script>
 </body>
 
 </html>

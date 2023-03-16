@@ -64,7 +64,7 @@ if ($id_user) {
 
                             <div class="input">
                                 <label class="input__label" for="phone"></label>
-                                <input type="tel" class="input__input" name="phone" id="phone" placeholder="Номер телефона" value="<?= $user['phone'] ?>">
+                                <input type="tel" class="input__input phone" name="phone" id="phone" placeholder="Номер телефона" value="<?= $user['phone'] ?>">
                             </div>
 
                             <div class="input">
@@ -157,7 +157,7 @@ if ($id_user) {
             <?
             if ($sessionMiddleware->isAdmin()) :
             ?>
-           
+
                 <a href="./admin.php" class="button button_link">Панель администратора</a>
             <? endif; ?>
             <br>
@@ -184,6 +184,9 @@ if ($id_user) {
             form.submit();
         });
     </script>
+
+    <script src="./assets/scripts/vendor/imask.js"></script>
+    <script src="./assets/scripts/tel-mask.js"></script>
 </body>
 
 </html>
